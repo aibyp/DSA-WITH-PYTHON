@@ -1,0 +1,33 @@
+LEETCODE - 1 : TWO SUM:
+💡 Intuition
+
+We need to find two numbers such that:
+
+nums[i] + nums[j] = target
+
+Instead of checking all pairs (which is slow), we can:
+
+For each number, calculate its complement:
+complement = target - nums[i]
+Then check if this complement was seen before
+
+###This avoids nested loops and makes it fast
+
+⚙️ Approach
+Use a hash map (dictionary) to store:
+value → index
+Traverse the array:
+Compute complement = target - nums[i]
+If complement exists in hashmap → return indices
+Else store current value with index
+
+
+ #####CODE
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        hashmap={}
+        for i in range(len(nums)):
+            y=target-nums[i]
+            if y in hashmap:
+                return [hashmap[y],i]
+            hashmap[nums[i]]=i
